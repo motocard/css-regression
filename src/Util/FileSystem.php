@@ -30,8 +30,7 @@ class FileSystem
      */
     public function createDirectoryRecursive($path)
     {
-        // @todo UNIX ONLY?
-        if (substr($path, 0, 1) !== '/') {
+        if (substr($path, 0, 1) !== '/' && substr($path, 1, 1) !== ':') {
             $path = \Codeception\Configuration::projectDir() . $path;
         } elseif (!strstr($path, \Codeception\Configuration::projectDir())) {
             throw new \InvalidArgumentException(
